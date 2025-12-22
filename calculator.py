@@ -8,10 +8,12 @@ def multiply(x, y):
     return x * y
 
 def divide(x, y):
+    if y == 0:
+        return "Ошибка: на ноль делить нельзя"
     return x / y
 
 def main():
-    print("--- Калькулятор v0.3 ---")
+    print("--- Калькулятор v0.4 (Safe Mode) ---")
     
     while True:
         print("\n1. Сложение")
@@ -26,8 +28,12 @@ def main():
             break
             
         if choice in ('1', '2', '3', '4'):
-            num1 = float(input("Число 1: "))
-            num2 = float(input("Число 2: "))
+            try:
+                num1 = float(input("Число 1: "))
+                num2 = float(input("Число 2: "))
+            except ValueError:
+                print("Ошибка: вводите только цифры!")
+                continue
             
             if choice == '1':
                 print("Результат:", add(num1, num2))
