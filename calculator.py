@@ -11,48 +11,69 @@ def multiply(x, y):
 
 def divide(x, y):
     if y == 0:
-        return "Ошибка: на ноль делить нельзя"
+        return "Ошибка: Деление на ноль!"
     return x / y
 
 def power(x, y):
     return math.pow(x, y)
 
 def main():
-    print("--- Калькулятор v0.5 (Math Module) ---")
-    
+    print("--- Python Калькулятор v1.0 ---")
+    history = []
+
     while True:
-        print("\n1. Сложение")
-        print("2. Вычитание")
-        print("3. Умножение")
-        print("4. Деление")
-        print("5. Возведение в степень")
+        print("\n--- Меню ---")
+        print("1. Сложение (+)")
+        print("2. Вычитание (-)")
+        print("3. Умножение (*)")
+        print("4. Деление (/)")
+        print("5. Степень (^)")
+        print("6. История")
         print("0. Выход")
-        
-        choice = input("Выберите действие: ")
-        
+
+        choice = input("Ввод: ")
+
         if choice == '0':
             break
-            
+        
+        if choice == '6':
+            print("\n--- История ---")
+            for h in history:
+                print(h)
+            continue
+
         if choice in ('1', '2', '3', '4', '5'):
             try:
                 num1 = float(input("Число 1: "))
                 num2 = float(input("Число 2: "))
             except ValueError:
-                print("Ошибка: вводите только цифры!")
+                print("Ошибка: нужны числа.")
                 continue
-            
+
+            res = 0
+            op = ""
+
             if choice == '1':
-                print("Результат:", add(num1, num2))
+                res = add(num1, num2)
+                op = "+"
             elif choice == '2':
-                print("Результат:", subtract(num1, num2))
+                res = subtract(num1, num2)
+                op = "-"
             elif choice == '3':
-                print("Результат:", multiply(num1, num2))
+                res = multiply(num1, num2)
+                op = "*"
             elif choice == '4':
-                print("Результат:", divide(num1, num2))
+                res = divide(num1, num2)
+                op = "/"
             elif choice == '5':
-                print("Результат:", power(num1, num2))
+                res = power(num1, num2)
+                op = "^"
+
+            out = f"{num1} {op} {num2} = {res}"
+            print(">>>", out)
+            history.append(out)
         else:
-            print("Неверный ввод")
+            print("Нет такой команды.")
 
 if __name__ == "__main__":
     main()
