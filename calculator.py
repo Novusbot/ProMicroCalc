@@ -1,5 +1,15 @@
 import math
 
+def show_menu():
+    print("\n--- Меню ---")
+    print("1. Сложение (+)")
+    print("2. Вычитание (-)")
+    print("3. Умножение (*)")
+    print("4. Деление (/)")
+    print("5. Степень (^)")
+    print("6. История")
+    print("0. Выход")
+
 def add(x, y):
     return x + y
 
@@ -18,28 +28,24 @@ def power(x, y):
     return math.pow(x, y)
 
 def main():
-    print("--- Python Калькулятор v1.0 ---")
+    print("--- Python Калькулятор v1.1 ---")
     history = []
 
     while True:
-        print("\n--- Меню ---")
-        print("1. Сложение (+)")
-        print("2. Вычитание (-)")
-        print("3. Умножение (*)")
-        print("4. Деление (/)")
-        print("5. Степень (^)")
-        print("6. История")
-        print("0. Выход")
-
+        show_menu()
         choice = input("Ввод: ")
 
         if choice == '0':
+            print("Завершение работы.")
             break
         
         if choice == '6':
             print("\n--- История ---")
-            for h in history:
-                print(h)
+            if not history:
+                print("История пуста")
+            else:
+                for h in history:
+                    print(h)
             continue
 
         if choice in ('1', '2', '3', '4', '5'):
